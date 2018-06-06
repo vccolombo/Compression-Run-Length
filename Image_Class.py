@@ -10,7 +10,21 @@ class Image_Class(object):
         return v
 
 
-    def decompress(v):
+    def devectorize(self, v):
+        matrix = []
+        r = []
+        for x in range(0, len(v), 3):
+            if(x % (self.y*3) == 0 and x != 0):
+                matrix.append(r)
+                r = []
+
+            r.append((v[x], v[x+1], v[x+2]))
+
+
+        return matrix
+
+
+    def decompress(self, v):
         d = []
         for idx in range(0, len(v), 4):
             n = v[idx+0]
