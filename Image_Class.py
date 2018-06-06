@@ -6,7 +6,7 @@ class Image_Class(object):
         pix = image.load()
         for x in range(0, self.x):
             for y in range(0, self.y):
-                v.extend(pix[x,y])
+                v.extend(pix[y,x])
         return v
 
 
@@ -64,7 +64,6 @@ class Image_Class(object):
 
 
     def __init__(self, image):
-        self.x = image.size[0]
-        self.y = image.size[1]
-        self.vector = self.vectorize(image)
-        self.compressed = self.compress(self.vector)
+        self.y = image.size[0]
+        self.x = image.size[1]
+        self.compressed = self.compress(self.vectorize(image))
