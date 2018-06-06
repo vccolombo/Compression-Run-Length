@@ -5,9 +5,11 @@ import pickle
 
 image = Image_Class(Image.open(sys.argv[1]))
 
-c = image.compress(image.vector)
-
 with open('test.txt', 'wb') as fp:
-    pickle.dump(c, fp)
+    pickle.dump(image, fp)
 
-# print(c[0], c[1], c[2], c[3])
+with open('test_c.txt', 'wb') as fp:
+    pickle.dump(image.compressed, fp)
+
+with open('test_o.txt', 'wb') as fp:
+    pickle.dump(image.vector, fp)

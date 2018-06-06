@@ -9,6 +9,20 @@ class Image_Class(object):
                 v.extend(pix[x,y])
         return v
 
+
+    def decompress(v):
+        d = []
+        for idx in range(0, len(v), 4):
+            n = v[idx+0]
+            r = v[idx+1]
+            g = v[idx+2]
+            b = v[idx+3]
+            rgb = [r,g,b]
+            for times in range(0, n):
+                d.extend(rgb)
+        return d
+
+
     def compress(self, v):
         r = v[0]
         g = v[1]
@@ -21,17 +35,17 @@ class Image_Class(object):
             g = v[idx + 1]
             b = v[idx + 2]
             atual = [r,g,b]
+
             if(atual == anterior):
                 counter = counter + 1
             else:
-                # if(counter > 1):
-                #     print(counter)
                 c.append(counter)
                 c.extend(anterior)
-
                 counter = 1
             anterior = atual
 
+        c.append(counter)
+        c.extend(anterior)
         return c
 
 
@@ -39,3 +53,4 @@ class Image_Class(object):
         self.x = image.size[0]
         self.y = image.size[1]
         self.vector = self.vectorize(image)
+        self.compressed = self.compress(self.vector)
