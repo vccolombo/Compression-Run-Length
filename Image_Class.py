@@ -25,7 +25,7 @@ class Image_Class(object):
 
 
     def decompress(self, v):
-        d = []
+        d = [] #decompressed
         for idx in range(0, len(v), 4):
             n = v[idx+0]
             r = v[idx+1]
@@ -43,7 +43,7 @@ class Image_Class(object):
         b = v[2]
         anterior = [r,g,b]
         counter = 1
-        c = []
+        compressed = []
         for idx in range(3, len(v), 3):
             r = v[idx + 0]
             g = v[idx + 1]
@@ -53,14 +53,14 @@ class Image_Class(object):
             if(atual == anterior):
                 counter = counter + 1
             else:
-                c.append(counter)
-                c.extend(anterior)
+                compressed.append(counter)
+                compressed.extend(anterior)
                 counter = 1
             anterior = atual
 
-        c.append(counter)
-        c.extend(anterior)
-        return c
+        compressed.append(counter)
+        compressed.extend(anterior)
+        return compressed
 
 
     def __init__(self, image):

@@ -4,14 +4,14 @@ import sys
 import pickle
 
 with open('data.txt', 'rb') as fp:
-    c = pickle.load(fp)
+    data = pickle.load(fp)
 
 # print(c.x)
 # print(c[0], c[1], c[2], c[3])
 
-d = c.decompress(c.compressed)
+d = data.decompress(data.compressed)
 
-m = c.devectorize(d)
+m = data.devectorize(d)
 
 import numpy as np
 
